@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="JobScheduler">
 <head>
-  <title>BookstoreFront</title>
+  <title>Bookstore Front</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.herokucdn.com/purple/1.0.0/purple.min.css">
+  <link rel="stylesheet" href="https://scheduler.heroku.com/stylesheets/base.css">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body ng-controller="JobCtrl">
 
 <%= yield %>
 

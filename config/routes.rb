@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   
-  root 'application#hello'
+  root 'static#index'
 
-  end
+end

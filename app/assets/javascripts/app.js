@@ -1,8 +1,11 @@
-angular.module('JobScheduler', ['ngMockE2E'])
+angular.module('JobScheduler', [])
 .controller('JobCtrl', function($scope, $filter, $http, $timeout) {
 
+console.log("HIIIT");
+
     $scope.getJobs = function() {
-      $http.get('/jobs').then(function(response) {
+      $http.get('http://localhost:3001/books').then(function(response) {
+        console.log(response);
         $scope.jobList = response.data;
       });
     };
@@ -10,13 +13,17 @@ angular.module('JobScheduler', ['ngMockE2E'])
     $scope.postJob = function(job) {
       $http.post('/jobs', job).then(function(response) {
         $scope.jobList = response.data;
+        console.log("POST: ",$scope.jobList);
       });
+      
     };
 
     $scope.putJob = function(job) {
       $http.put('/jobs', job).then(function(response) {
         $scope.jobList = response.data;
+        console.log("PUT: ", $scope.jobList);
       });
+      
     };
 
   $scope.isCreating = false;
@@ -154,48 +161,49 @@ angular.module('JobScheduler', ['ngMockE2E'])
     }
   };
 })
+;
 
 //  Mock Backend
-.run(function($httpBackend) {
+// .run(function($httpBackend) {
 
-  var jobs = [
-    {
-      name: "rake the leaves",
-      dynoSize: "Free",
-      frequency: "Daily",
-      lastRun: "Never",
-      nextDue: "01:00"
-    }, {
-      name: "make a sandwhich",
-      dynoSize: "Free",
-      frequency: "Hourly",
-      lastRun: "Never",
-      nextDue: "00:20"
-    }, {
-      name: "rails generate cash",
-      dynoSize: "Free",
-      frequency: "Every 10 minutes",
-      lastRun: "Never",
-      nextDue: "3:33"
-    }
-  ];
+//   var jobs = [
+//     {
+//       name: "rake the leaves",
+//       dynoSize: "Free",
+//       frequency: "Daily",
+//       lastRun: "Never",
+//       nextDue: "01:00"
+//     }, {
+//       name: "make a sandwhich",
+//       dynoSize: "Free",
+//       frequency: "Hourly",
+//       lastRun: "Never",
+//       nextDue: "00:20"
+//     }, {
+//       name: "rails generate cash",
+//       dynoSize: "Free",
+//       frequency: "Every 10 minutes",
+//       lastRun: "Never",
+//       nextDue: "3:33"
+//     }
+//   ];
 
-  $httpBackend.whenGET('/jobs').respond(jobs);
+//   $httpBackend.whenGET('/jobs').respond(jobs);
 
-  $httpBackend.whenPOST('/jobs').respond(function(method, url, data) {
-    var job = angular.fromJson(data);
-    jobs.push(job);
-    return [200, jobs, {}];
-  });
+//   $httpBackend.whenPOST('/jobs').respond(function(method, url, data) {
+//     var job = angular.fromJson(data);
+//     jobs.push(job);
+//     return [200, jobs, {}];
+//   });
 
-  $httpBackend.whenPUT('/jobs').respond(function(method, url, data) {
-    var newJobs = angular.fromJson(data);
-    jobs = newJobs;
-    return [200, jobs, {}];
-  });
+//   $httpBackend.whenPUT('/jobs').respond(function(method, url, data) {
+//     var newJobs = angular.fromJson(data);
+//     jobs = newJobs;
+//     return [200, jobs, {}];
+//   });
 
-  $httpBackend.whenDELETE('/jobs').respond(function(method, url, data) {
-    jobs.splice(data, 1);
-    return [200, jobs, {}];
-  });
-});
+//   $httpBackend.whenDELETE('/jobs').respond(function(method, url, data) {
+//     jobs.splice(data, 1);
+//     return [200, jobs, {}];
+//   });
+// });

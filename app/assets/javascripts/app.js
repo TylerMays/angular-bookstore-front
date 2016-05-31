@@ -1,11 +1,11 @@
 angular.module('JobScheduler', [])
 .controller('JobCtrl', function($scope, $filter, $http, $timeout) {
 
-console.log("HIIIT");
+console.log("hi there");
 
     $scope.getJobs = function() {
-      $http.get('http://localhost:3001/books').then(function(response) {
-        console.log(response);
+      $http.get('https://bookstore-app-api.herokuapp.com/books').then(function(response) {
+        console.log(response.data);
         $scope.jobList = response.data;
       });
     };

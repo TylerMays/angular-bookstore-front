@@ -5,7 +5,9 @@
       <div job-state ng-repeat="job in jobList" class="item">
         <form ng-submit="saveJob(job, jobCopy, $last)">
 
-          <div class="item_well">
+        <pre>{{ job | json }}</pre>
+
+          <!-- <div class="item_well">
 
             <div class="row row--rule">
               <div class="col-md-12">
@@ -100,20 +102,20 @@
                         ng-click="deleteJob(job)">Delete Job</a>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </form>
 
       </div>
 
-      <div class="purple-box u-padding-Am u-margin-Tl u-margin-Bm text-center"
+      <!-- <div class="purple-box u-padding-Am u-margin-Tl u-margin-Bm text-center"
            ng-if="!jobList.length">
         <h3>Schedule tasks</h3>
       </div>
 
       <button class="btn btn-lg btn-block btn-primary btn-job"
               ng-click="startCreating()"
-              ng-hide="isCreating">Add new job</button>
+              ng-hide="isCreating">Add new job</button> -->
 
     </div>
   </div>

@@ -4,7 +4,7 @@ angular.module('JobScheduler', [])
 console.log("hi there");
 
     $scope.getJobs = function() {
-      $http.get('https://bookstore-app-api.herokuapp.com/books').then(function(response) {
+      $http.get('https://rails5-bookstore-api.herokuapp.com/books').then(function(response) {
         console.log(response.data);
         $scope.jobList = response.data;
       });
